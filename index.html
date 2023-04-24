@@ -1,4 +1,3 @@
-	
 <!DOCTYPE html>
 <html lang="fa">
 <head>
@@ -110,10 +109,16 @@
 </head>
 <body>
 	<h1>ابزار جایگذاری آی پی تمیز در تمام کانفیگ های لینک سابسکریپشن</h1>
-	<p>لطفا لینک سابسکریپشن خود را وارد کنید، اپراتور خود را انتخاب کنید و سپس روی ثبت کلیک کنید</p>
+	<p>نوع لینک و اپراتور خود را انتخاب کرده ، لینک خود را وارد کنید و سپس روی ثبت کلیک کنید</p>
 	<form method="post" action="https://tbzyen-8080.csb.app/process.php">
-		<!-- در صورت اجرا در سرور شخصی مقدار action را به process.php تغییر دهید -->
+	<div style="display: flex; flex-direction: row; align: center;">
+  <input type="radio" name="category" value="single" checked>
+  <label style="margin-right: 20px;">لینک تک کانفیگ</label>
+  <input type="radio" name="category" value="sub">
+  <label>لینک سابسکریپشن</label>
+</div>
 	<input type="text" class="input" name="url" id="url" placeholder="https://" ></input>
+	
 	<select class="input" name="option" id="option">
 		<option value="MCI">همراه‌اول</option>
 		<option value="MTN">ایرانسل</option>
