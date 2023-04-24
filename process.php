@@ -10,39 +10,11 @@ function isBase64($string)
     return base64_decode($string, true) !== false;
 }
 
-$result = array(
-        "last_update" => "",
-        "last_timestamp" => 0,
-        "ipv4" => array(),
-        "ipv6" => array()
-    );
-    
-$ips = [];
-
 function clean_ip()
 {
-    $data = json_decode(file_get_contents("providers.json") , true);
-
-    foreach ($data as $key => $url_array){
-    foreach ($url_array as $url){
-        $dns_array = dns_get_record($url ,  DNS_A);
-        foreach ($dns_array as $dns_data){
-            $ips[] = [
-                "ip" => $dns_data['ip'],
-                "operator" => $key,
-                "provider" => implode(".", array_slice(explode(".", $dns_data['host']), 1)),
-                "created_at" => strtotime(date('Y-m-d H:i:s')),
-            ];
-        }
-    }
-}
-
-    $data = array(
-        "last_update" => date('Y-m-d H:i:s'),
-        "last_timestamp" => strtotime(date('Y-m-d H:i:s')),
-        "ipv4" => $ips,
-        "ipv6" => array()
-    );
+    $url =
+        "https://raw.githubusercontent.com/yebekhe/cf-clean-ip-resolver/main/list.json";
+    $data = json_decode(file_get_contents($url), true);
     $clean_ip = [];
 
     foreach ($data["ipv4"] as $address) {
