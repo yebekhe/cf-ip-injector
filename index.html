@@ -2,64 +2,104 @@
 <html lang="fa">
 <head>
 	<meta charset="UTF-8">
-	<title>اابزار جایگذاری آی پی تمیز در تمام کانفیگ های لینک سابسکریپشن</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ابزار جایگذاری آی پی تمیز در تمام کانفیگ های لینک سابسکریپشن</title>
 	<style>
 		body {
-	background-color: #f2f2f2; /* light grey */
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	min-height: 100vh;
-	font-family: 'Helvetica Neue', sans-serif;
-}
+			background-color: #f2f2f2; /* light grey */
+			font-family: 'Helvetica Neue', sans-serif;
+		}
 
-h1 {
-	color: #007bff; /* blue */
-	font-size: 48px;
-	margin-bottom: 20px;
-	text-align: center;
-	text-shadow: 2px 2px #ccc;
-}
+		h1 {
+			color: #007bff; /* blue */
+			font-size: 48px;
+			margin-bottom: 20px;
+			text-align: center;
+			text-shadow: 2px 2px #ccc;
+		}
 
-p {
-	color: #333333; /* dark grey */
-	font-size: 24px;
-	text-align: center;
-	margin-bottom: 20px;
-	line-height: 1.5;
-}
+		p {
+			color: #333333; /* dark grey */
+			font-size: 24px;
+			text-align: center;
+			margin-bottom: 20px;
+			line-height: 1.5;
+		}
 
-.button {
-	background-color: #ffa500; /* orange */
-	color: white;
-	padding: 10px 20px;
-	border-radius: 5px;
-	text-decoration: none;
-	opacity: 0.8;
-	cursor: pointer;
-	font-size: 24px;
-	border: none;
-	box-shadow: 2px 2px #ccc;
-	transition: all 0.2s ease-in-out;
-	
-}
+		form {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			grid-gap: 10px;
+			align-items: center;
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 20px;
+			border: 2px solid #ccc;
+			border-radius: 10px;
+			box-shadow: 2px 2px #ccc;
+		}
 
-.button:hover:not([disabled]) {
-	background-color: #ff8c00; /* darker orange */
-	transform: scale(1.05);
-}
+		.button {
+			background-color: #ffa500; /* orange */
+			color: white;
+			padding: 10px 20px;
+			border-radius: 5px;
+			text-decoration: none;
+			opacity: 0.8;
+			cursor: pointer;
+			font-size: 24px;
+			border: none;
+			box-shadow: 2px 2px #ccc;
+			transition: all 0.2s ease-in-out;
+			grid-column: span 2;
+		}
 
-.input {
-	margin: 10px 0;
-	padding: 10px;
-	border: 2px solid #ccc;
-	border-radius: 10px;
-	font-size: 24px;
-	text-align: center;
-	direction: rtl; /* right-to-left text */
-}
+		.button:hover:not([disabled]) {
+			background-color: #ff8c00; /* darker orange */
+			transform: scale(1.05);
+		}
 
+		.input {
+			margin: 10px 0;
+			padding: 10px;
+			border: 2px solid #ccc;
+			border-radius: 10px;
+			font-size: 24px;
+			text-align: center;
+			direction: rtl; /* right-to-left text */
+			grid-column: span 2;
+		}
+
+		select {
+			grid-column: span 2;
+		}
+
+		@media screen and (max-width: 768px) {
+			h1 {
+				font-size: 36px;
+			}
+
+			p {
+				font-size: 18px;
+				margin-bottom: 10px;
+			}
+
+			.button {
+				font-size: 16px;
+				padding: 8px;
+			}
+
+			.input {
+				font-size: 18px;
+				padding: 8px;
+			}
+
+			form {
+				display: flex;
+				flex-direction: column;
+				padding: 10px;
+			}
+		}
 	</style>
 </head>
 <body>
