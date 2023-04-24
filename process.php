@@ -2,7 +2,10 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $option = $_POST['option'];
     $url = $_POST['url'];
-	echo replaceIpAddresses($url , $option);
+    $type = $_POST['category'];
+    
+    header('Content-Type: application/json');
+	  echo replaceIpAddresses($url , $option , $type);
 }
 
 function isBase64($string)
@@ -29,8 +32,8 @@ function clean_ip()
     return $clean_ip;
 }
 
-function replaceIpAddresses($url , $option)
-{
+function replaceIpAddresses($url , $option , $type) {
+  if ($type === 'sub'){
     if (isBase64(file_get_contents($url))) {
         $data = base64_decode(file_get_contents($url));
     } else {
@@ -46,30 +49,34 @@ function replaceIpAddresses($url , $option)
 	
     foreach ($lines as $config) {
         if (strpos($config, "vmess://") === 0) {
-            $config = decode_vmess($config);
+            $config_data = decode_vmess($config);
 			foreach ($clean_ips as $clean_ip){
-				$config["add"] = $clean_ip;
+				$config_data["add"] = $clean_ip;
+                $config_data["ps"] .=  "-" . $clean_ip;
+                $config_array[] = encode_vmess($config_data);
 			}
-            $config_array[] = encode_vmess($config);
         } elseif (strpos($config, "ss://") === 0) {
-            $config = ParseShadowsocks($config);
+            $config_data = ParseShadowsocks($config);
 			foreach ($clean_ips as $clean_ip){
-				$config["server_address"] = $clean_ip;
+				$config_data["server_address"] = $clean_ip;
+                $config_data["name"] .=  "-" . $clean_ip;
+                $config_array[] = BuildShadowsocks($config_data);
 			}
-            $config_array[] = BuildShadowsocks($config);
         } elseif (strpos($config, "trojan://") === 0) {
-            $config = parseProxyUrl($config);
+            $config_data = parseProxyUrl($config);
 			foreach ($clean_ips as $clean_ip){
-				$config["hostname"] = $clean_ip;
+				$config_data["hostname"] = $clean_ip;
+                $config_data["hash"] .= "-" . $clean_ip;
+                $config_array[] = buildProxyUrl($config_data);
 			}
-            $config_array[] = buildProxyUrl($config);
         } elseif (strpos($config, "vless://") === 0) {
             $config_type = "vless";
-            $config = parseProxyUrl($config, $config_type);
+            $config_data = parseProxyUrl($config, $config_type);
 			foreach ($clean_ips as $clean_ip){
-				$config["hostname"] = $clean_ip;
+				$config_data["hostname"] = $clean_ip;
+                $config_data["hash"] .= "-" . $clean_ip;
+                $config_array[] = buildProxyUrl($config_data, "vless");
 			}
-            $config_array[] = buildProxyUrl($config, "vless");
         }
     }
     $config_string = "";
@@ -81,6 +88,57 @@ function replaceIpAddresses($url , $option)
         }
         
     }
+  }
+  elseif ($type === "single")
+  {
+    $config = $url ;
+    $clean_ips = clean_ip()[$option];
+	  $config_array = [];
+    
+    if (strpos($config, "vmess://") === 0) {
+            $config_data = decode_vmess($config);
+            $config_name = $config_data["ps"];
+			foreach ($clean_ips as $clean_ip){
+				$config_data["add"] = $clean_ip;
+                $config_data["ps"] =  $config_name . "-" . $clean_ip;
+                $config_array[] = encode_vmess($config_data);
+			}
+        } elseif (strpos($config, "ss://") === 0) {
+            $config_data = ParseShadowsocks($config);
+            $config_name = $config_data['name'];
+			foreach ($clean_ips as $clean_ip){
+				        $config_data["server_address"] = $clean_ip;
+                $config_data["name"] = $config_name . "-" . $clean_ip;
+                $config_array[] = BuildShadowsocks($config_data);
+			}
+        } elseif (strpos($config, "trojan://") === 0) {
+            $config_data = parseProxyUrl($config);
+            $config_name = $config_data['hash'];
+			foreach ($clean_ips as $clean_ip){
+				$config_data["hostname"] = $clean_ip;
+                $config_data["hash"] = $config_name . "-" . $clean_ip;
+                $config_array[] = buildProxyUrl($config_data);
+			}
+        } elseif (strpos($config, "vless://") === 0) {
+            $config_type = "vless";
+            $config_data = parseProxyUrl($config, $config_type);
+            $config_name = $config_data['hash'];
+			foreach ($clean_ips as $clean_ip){
+				$config_data["hostname"] = $clean_ip;
+                $config_data["hash"] = $config_name . "-" . $clean_ip;
+                $config_array[] = buildProxyUrl($config_data, "vless");
+			}
+        }
+    $config_string = "";
+    foreach ($config_array as $config){
+        if ($config_string === ""){
+            $config_string .= $config;
+        } else {
+            $config_string .= "\n" . $config ;
+        }
+        
+    }
+  }
     return $config_string;
 }
 
