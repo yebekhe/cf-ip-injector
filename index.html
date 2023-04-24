@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+	<meta charset="UTF-8">
+	<title>ابزار جایگذاری آی پی تمیز در کانفیگ های ساب</title>
+	<style>
+		body {
+	background-color: #f2f2f2; /* light grey */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	font-family: 'Helvetica Neue', sans-serif;
+}
+
+h1 {
+	color: #007bff; /* blue */
+	font-size: 48px;
+	margin-bottom: 20px;
+	text-align: center;
+	text-shadow: 2px 2px #ccc;
+}
+
+p {
+	color: #333333; /* dark grey */
+	font-size: 24px;
+	text-align: center;
+	margin-bottom: 20px;
+	line-height: 1.5;
+}
+
+.button {
+	background-color: #ffa500; /* orange */
+	color: white;
+	padding: 10px 20px;
+	border-radius: 5px;
+	text-decoration: none;
+	opacity: 0.8;
+	cursor: pointer;
+	font-size: 24px;
+	border: none;
+	box-shadow: 2px 2px #ccc;
+	transition: all 0.2s ease-in-out;
+	
+}
+
+.button:hover:not([disabled]) {
+	background-color: #ff8c00; /* darker orange */
+	transform: scale(1.05);
+}
+
+.input {
+	margin: 10px 0;
+	padding: 10px;
+	border: 2px solid #ccc;
+	border-radius: 10px;
+	font-size: 24px;
+	text-align: center;
+	direction: rtl; /* right-to-left text */
+}
+
+	</style>
+</head>
+<body>
+	<h1>ابزار جایگذاری آی پی تمیز در کانفیگ های ساب</h1>
+	<p>لطفا لینک سابسکریپشن خود را وارد کنید، اپراتور خود را انتخاب کنید و سپس روی ثبت کلیک کنید</p>
+	<form method="post" action="process.php">
+	<input type="text" class="input" name="url" id="url" placeholder="لینک را وارد کنید"></input>
+	<button type="submit" class="button" id="submit" disabled>ثبت</button><br>
+	<span style="padding-right: 10px;">اپراتور خود را انتخاب کنید : </span>
+	<select class="input" name="option" id="option">
+		<option value="MCI">همراه‌اول</option>
+		<option value="MTN">ایرانسل</option>
+		<option value="MKH">مخابرات</option>
+		<option value="RTL">رایتل</option>
+		<option value="HWB">های‌وب</option>
+		<option value="AST">آسیاتک</option>
+		<option value="SHT">شاتل</option>
+		<option value="PRS">پارس‌آنلاین</option>
+		<option value="MBT">مبین‌نت</option>
+		<option value="ASK">اندیشه‌سبز</option>
+		<option value="RSP">رسپینا</option>
+		<option value="AFN">افرانت</option>
+		<option value="ZTL">زی‌تل</option>
+		<option value="PSM">پیشگامان</option>
+		<option value="ARX">آراکس</option>
+		<option value="SMT">سامانتل</option>
+		<option value="SHM">شاتل‌موبایل</option>
+		<option value="FNV">فن‌آوا</option>
+		<option value="DBN">دیده‌بان‌نت</option>
+		<option value="APT">آپتل</option>
+		<option value="FNP">فناپ‌تلکام</option>
+		<option value="RYN">رای‌نت</option>
+	</select>
+</form>
+	
+	<script>
+		var urlInput = document.getElementById("url");
+		var submitButton = document.getElementById("submit");
+		
+		urlInput.addEventListener("input", function() {
+			if (isValidUrl(urlInput.value)) {
+				submitButton.removeAttribute("disabled");
+				submitButton.style.cursor = "pointer";
+				submitButton.style.opacity = 1;
+			} else {
+				submitButton.setAttribute("disabled", true);
+				submitButton.style.cursor = "not-allowed";
+				submitButton.style.opacity = 0.5;
+			}
+		});
+		
+		function isValidUrl(url) {
+			try {
+				new URL(url);
+				return true;
+			} catch (err) {
+				return false;
+			}
+		}
+	</script>
+</body>
+</html>
