@@ -69,6 +69,10 @@
 			direction: rtl; /* right-to-left text */
 			grid-column: span 2;
 		}
+		
+		.select-label {
+			text-align: center;
+		}
 
 		select {
 			grid-column: span 2;
@@ -107,7 +111,7 @@
 	<p>لطفا لینک سابسکریپشن خود را وارد کنید، اپراتور خود را انتخاب کنید و سپس روی ثبت کلیک کنید</p>
 	<form method="post" action="https://tbzyen-8080.csb.app/process.php">
 	<input type="text" class="input" name="url" id="url" placeholder="https://" style="dir:ltr;"></input>
-	<span>اپراتور خود را انتخاب کنید</span>
+	<span class="select-label">اپراتور خود را انتخاب کنید</span>
 	<select class="input" name="option" id="option">
 		<option value="MCI">همراه‌اول</option>
 		<option value="MTN">ایرانسل</option>
