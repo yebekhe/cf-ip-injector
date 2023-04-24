@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>ابزار جایگذاری آی پی تمیز در تمام کانفیگ های لینک سابسکریپشن</title>
+	<title>ابزار جایگذاری آی پی تمیز</title>
 	<style>
 		body {
 			background-color: #f2f2f2; /* light grey */
@@ -58,6 +58,11 @@
 			background-color: #ff8c00; /* darker orange */
 			transform: scale(1.05);
 		}
+		
+		.radio-btn {
+			 display: inline-block;
+			 margin-right: 10px;
+		 }
 
 		.input {
 			margin: 10px 0;
@@ -108,12 +113,12 @@
 	</style>
 </head>
 <body>
-	<h1>ابزار جایگذاری آی پی تمیز در تمام کانفیگ های لینک سابسکریپشن</h1>
+	<h1>ابزار جایگذاری آی پی تمیز</h1>
 	<p>نوع لینک و اپراتور خود را انتخاب کرده ، لینک خود را وارد کنید و سپس روی ثبت کلیک کنید</p>
 	<form method="post" action="https://tbzyen-8080.csb.app/process.php">
 	<div style="display: flex; flex-direction: row; align: center;">
-  <input type="radio" name="category" value="single" checked>
-  <label style="margin-right: 20px;">لینک تک کانفیگ</label>
+  <input type="radio" name="category" value="single" checked class="radio-btn">
+  <label style="margin-right: 20px;" class="radio-btn">لینک تک کانفیگ</label>
   <input type="radio" name="category" value="sub">
   <label>لینک سابسکریپشن</label>
 </div>
