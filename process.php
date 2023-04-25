@@ -176,7 +176,7 @@ function buildProxyUrl($obj, $type = "trojan") {
     $url .= "@";
   }
   $url .= $obj['hostname'];
-  if (isset($obj['port']) && $obj['port'] !== '' && $obj['port'] !== ($type === "trojan" ? 80 : 443)) {
+  if (isset($obj['port']) && $obj['port'] !== '') {
     $url .= ":" . $obj['port'];
   }
 
