@@ -84,14 +84,14 @@ body {
       }
 	  
       .textarea {
-	border: 2px solid #ccc;
-        border-radius: 10px;
-        font-size: 18px;
-        text-align: center;
-        padding: 8px;
-	direction: ltr;
-	grid-column: span 3;
-        }
+         border: 2px solid #ccc;
+         border-radius: 10px;
+         font-size: 18px;
+	 text-align: center;
+         padding: 8px;
+	 direction: ltr;
+	 grid-column: span 3;
+       }
 
       .select-label {
         text-align: center;
