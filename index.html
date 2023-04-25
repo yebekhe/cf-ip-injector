@@ -3,148 +3,22 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="assets/js/scripts.js"></script>
     <title>ابزار جایگذاری آی پی تمیز کلودفلر</title>
-    <style>
-      body {
-        background-color: #f2f2f2;
-        /* light grey */
-        font-family: 'Helvetica Neue', sans-serif;
-      }
-
-      h1 {
-        color: #007bff;
-        /* blue */
-        font-size: 48px;
-        margin-bottom: 20px;
-        text-align: center;
-        text-shadow: 2px 2px #ccc;
-      }
-
-      p {
-        color: #333333;
-        /* dark grey */
-        font-size: 24px;
-        text-align: center;
-        margin-bottom: 20px;
-        line-height: 1.5;
-      }
-
-      form {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 10px;
-        align-items: center;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        border: 2px solid #ccc;
-        border-radius: 10px;
-        box-shadow: 2px 2px #ccc;
-      }
-
-      .button {
-        background-color: #ffa500;
-        /* orange */
-        color: white;
-        padding: 10px 20px;
-        border-radius: 5px;
-        text-decoration: none;
-        opacity: 0.8;
-        cursor: pointer;
-        font-size: 24px;
-        border: none;
-        box-shadow: 2px 2px #ccc;
-        transition: all 0.2s ease-in-out;
-        grid-column: span 2;
-      }
-
-      .button:hover:not([disabled]) {
-        background-color: #ff8c00;
-        /* darker orange */
-        transform: scale(1.05);
-      }
-
-      .radio-btn {
-        display: inline-block;
-        margin-right: 10px;
-      }
-
-      .input {
-        margin: 10px 0;
-        padding: 10px;
-        border: 2px solid #ccc;
-        border-radius: 10px;
-        font-size: 24px;
-        text-align: center;
-        direction: ltr;
-        /* left-to-right-text */
-        grid-column: span 2;
-      }
-	  
-      .textarea {
-         border: 2px solid #ccc;
-         border-radius: 10px;
-         font-size: 18px;
-	 text-align: center;
-         padding: 8px;
-	 direction: ltr;
-	 grid-column: span 3;
-       }
-
-      .select-label {
-        text-align: center;
-        dir: rtl
-      }
-
-      select {
-        grid-column: span 2;
-      }
-	  
-
-      @media screen and (max-width: 768px) {
-        h1 {
-          font-size: 36px;
-        }
-
-        p {
-          font-size: 18px;
-          margin-bottom: 10px;
-        }
-
-        .button {
-          font-size: 16px;
-          padding: 8px;
-        }
-
-        .input {
-          font-size: 18px;
-          padding: 8px;
-        }
-
-        form {
-          display: flex;
-          flex-direction: column;
-          padding: 10px;
-        }
-		
-		.textarea {
-          font-size: 11px;
-          padding: 8px;
-        }
-      }
-    </style>
   </head>
   <body>
+
     <h1>ابزار جایگذاری آی پی تمیز کلودفلر</h1>
     <p>نوع لینک و اپراتور خود را انتخاب کرده ، لینک خود را وارد کنید و سپس روی ثبت کلیک کنید</p>
-    <form method="post" action="https://tbzyen-8080.csb.app/process.php">
+    <form method="post" action="https://tbzyen-8080.csb.app/assets/php/process.php">
       <div style="display: flex; flex-direction: row; align: center;">
         <input type="radio" name="category" value="single" checked class="radio-btn">
         <label style="margin-right: 20px;" class="radio-btn">لینک تک کانفیگ</label>
         <input type="radio" name="category" value="sub">
         <label>لینک سابسکریپشن</label>
       </div>
-      <input type="text" class="input" name="url" id="url" placeholder="https://"></input>
+      <input type="text" class="input" name="url" id="url" placeholder="Subscription/Xray Config"></input>
       <select class="input" name="option" id="option">
         <option value="MCI">همراه‌اول</option>
         <option value="MTN">ایرانسل</option>
@@ -192,25 +66,6 @@
           submitButton.style.opacity = 0.5;
         }
       });
-
-      function isValidUrl(url) {
-        try {
-          new URL(url);
-          return true;
-        } catch (err) {
-          return false;
-        }
-      }
-	  function showTextBox() {
-        var checkbox = document.getElementById("ipCheckbox");
-        var textBox = document.getElementById("ipTextBox");
-        
-        if (checkbox.checked == true) {
-          textBox.style.display = "block";
-        } else {
-          textBox.style.display = "none";
-        }
-      }
     </script>
     <footer>
       <p>
