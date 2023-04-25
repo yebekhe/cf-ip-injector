@@ -3,9 +3,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $option = $_POST['option'];
     $url = $_POST['url'];
     $type = $_POST['category'];
+    $manual = "";
+    if ($_POST['ipsTextBox']){
+      $manual = $_POST['ipsTextBox'];
+    }
     
     header('Content-Type: application/json');
-	  echo replaceIpAddresses($url , $option , $type);
+	  echo replaceIpAddresses($url , $option , $type , $manual);
 }
 
 function isBase64($string)
@@ -32,7 +36,12 @@ function clean_ip()
     return $clean_ip;
 }
 
-function replaceIpAddresses($url , $option , $type) {
+function manualIP($ipList){
+  $IPs = explode("\n", $ipList);
+  return $IPs;
+}
+
+function replaceIpAddresses($url , $option , $type , $manual = "") {
   if ($type === 'sub'){
     if (isBase64(file_get_contents($url))) {
         $data = base64_decode(file_get_contents($url));
@@ -43,8 +52,12 @@ function replaceIpAddresses($url , $option , $type) {
     $lines = explode("\n", $data);
 
     $config_type = "";
-	
-	$clean_ips = clean_ip()[$option];
+	if ($manual === ""){
+    $clean_ips = clean_ip()[$option];
+  }
+	else{
+    $clean_ips = manualIP($manual);
+  }
 	$config_array = [];
 	
     foreach ($lines as $config) {
@@ -92,7 +105,12 @@ function replaceIpAddresses($url , $option , $type) {
   elseif ($type === "single")
   {
     $config = $url ;
-    $clean_ips = clean_ip()[$option];
+    if ($manual === ""){
+       $clean_ips = clean_ip()[$option];
+    }
+   	else{
+        $clean_ips = manualIP($manual);
+    }
 	  $config_array = [];
     
     if (strpos($config, "vmess://") === 0) {
@@ -126,7 +144,7 @@ function replaceIpAddresses($url , $option , $type) {
 			foreach ($clean_ips as $clean_ip){
 				$config_data["hostname"] = $clean_ip;
                 $config_data["hash"] = $config_name . "-" . $clean_ip;
-                $config_array[] = buildProxyUrl($config_data, "vless");
+                $config_array[] = buildProxyUrl($config_data, $config_type);
 			}
         }
     $config_string = "";
