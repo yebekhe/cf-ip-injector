@@ -1,10 +1,8 @@
-	
 <!DOCTYPE html>
 <html lang="fa">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	 <script src="jquery-3.6.0.min.js"></script>
 	<title>ابزار جایگذاری آی پی تمیز کلودفلر</title>
 	<style>
 		body {
@@ -117,7 +115,7 @@
 <body>
 	<h1>ابزار جایگذاری آی پی تمیز کلودفلر</h1>
 	<p>نوع لینک و اپراتور خود را انتخاب کرده ، لینک خود را وارد کنید و سپس روی ثبت کلیک کنید</p>
-	<form id="myForm">
+	<form method="post" action="https://tbzyen-8080.csb.app/process.php">
 	<div style="display: flex; flex-direction: row; align: center;">
   <input type="radio" name="category" value="single" checked class="radio-btn">
   <label style="margin-right: 20px;" class="radio-btn">لینک تک کانفیگ</label>
@@ -152,26 +150,7 @@
 	</select>
 	<button type="submit" class="button" id="submit" disabled>ثبت</button>
 </form>
-<form>
-	<p> کانفیگ های جدید </p>
-	<div id="response"></div>
-</form>
-	<script>
-		$(document).ready(function() {
-            $('#myForm').submit(function(e) {
-                e.preventDefault(); // Prevent the form from submitting normally
-                $.ajax({
-                    url: 'https://tbzyen-8080.csb.app/process.php',
-                    type: 'POST',
-                    data: $(this).serialize(),
-                    success: function(data) {
-						 data = data.replace(/\n/g, '<br>'); // replace newline characters with HTML line break tags
-                        $('#response').html(data);
-                    }
-                });
-            });
-        });
-	</script>
+	
 	<script>
 		var urlInput = document.getElementById("url");
 		var submitButton = document.getElementById("submit");
@@ -196,7 +175,6 @@
 				return false;
 			}
 		}
-    
 	</script>
 	<footer>
 	<p><a href="https://github.com/yebekhe/cf-ip-injector" target="_blank">مشاهده سورس</a> | برای دنبال کردن من در <a href="https://twitter.com/yebekhe" target="_blank">توییتر</a> کلیک کنید</p>
