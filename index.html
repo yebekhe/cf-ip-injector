@@ -161,7 +161,7 @@
             $('#myForm').submit(function(e) {
                 e.preventDefault(); // Prevent the form from submitting normally
                 $.ajax({
-                    url: 'process.php',
+                    url: 'https://tbzyen-8080.csb.app/process.php',
                     type: 'POST',
                     data: $(this).serialize(),
                     success: function(data) {
