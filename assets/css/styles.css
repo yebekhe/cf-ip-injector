@@ -12,15 +12,6 @@ body {
         text-align: center;
         text-shadow: 2px 2px #ccc;
       }
-      
-      h2 {
-        color: #007bff;
-        /* blue */
-        font-size: 21px;
-        margin-bottom: 20px;
-        text-align: center;
-        text-shadow: 2px 2px #ccc;
-      }
 
       p {
         color: #333333;
@@ -101,6 +92,7 @@ body {
       select {
         grid-column: span 2;
       }
+	  
 
       @media screen and (max-width: 768px) {
         h1 {
