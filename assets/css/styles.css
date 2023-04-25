@@ -12,6 +12,15 @@ body {
         text-align: center;
         text-shadow: 2px 2px #ccc;
       }
+      
+      h2 {
+        color: #007bff;
+        /* blue */
+        font-size: 21px;
+        margin-bottom: 20px;
+        text-align: center;
+        text-shadow: 2px 2px #ccc;
+      }
 
       p {
         color: #333333;
@@ -23,9 +32,12 @@ body {
       }
 
       form {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        /* display: grid; */
+        /* grid-template-columns: repeat(2, 1fr); */
+        /* grid-gap: 10px; */
         align-items: center;
         max-width: 800px;
         margin: 0 auto;
@@ -74,25 +86,24 @@ body {
         grid-column: span 2;
       }
 	  
-      .textarea {
-         border: 2px solid #ccc;
-         border-radius: 10px;
-         font-size: 18px;
-	 text-align: center;
-         padding: 8px;
-	 direction: ltr;
-	 grid-column: span 3;
-       }
+	  .textarea {
+		  border: 2px solid #ccc;
+		  border-radius: 10px;
+          font-size: 24px;
+		  text-align: center;
+          padding: 8px;
+		  direction: ltr;
+		  grid-column: span 3;
+        }
 
       .select-label {
         text-align: center;
-        dir: rtl
+        direction: rtl;
       }
 
       select {
         grid-column: span 2;
       }
-	  
 
       @media screen and (max-width: 768px) {
         h1 {
